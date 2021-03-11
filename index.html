@@ -17,7 +17,7 @@
         <button @click="saveItem">Add Item</button>
       </div>
       <ul>
-        <li v-for="item in items" :class="{strikeout: item.purchased}" @click="newPurchase(item)">{{ item.label }}</li>
+        <li v-for="item in reverseItems" :class="{strikeout: item.purchased}" @click="newPurchase(item)">{{ item.label }}</li>
       </ul>
       <p v-if="items.length === 0">done with all items!</p>
     </div>
@@ -47,6 +47,11 @@
               purchased: true
             }
           ]
+        },
+        computed: {
+          reverseItems() {
+            return this.items.slice(0).reverse();
+          }
         },
         methods: {
           saveItem: function () {
