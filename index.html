@@ -5,7 +5,17 @@
     <title>vue-demo</title>
   </head>
   <body>
-    <div id="hello-vue"></div>
+    <div id="hello-vue">
+      <h1>{{ header }}</h1>
+    </div>
     <script src="https://unpkg.com/vue"></script>
+    <script>
+      const helloVue = new Vue({
+        el: '#hello-vue',
+        data: {
+          header: 'vue is ready to load'
+        }
+      });
+    </script>
   </body>
 </html>
