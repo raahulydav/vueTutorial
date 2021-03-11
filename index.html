@@ -6,7 +6,8 @@
   </head>
   <body>
     <div id="hello-vue">
-      <h1>{{ header }}</h1>
+      <h1>{{ header.toUpperCase() }}</h1>
+      <input type="text" v-model="header" />
     </div>
     <script src="https://unpkg.com/vue"></script>
     <script>
