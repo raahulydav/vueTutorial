@@ -6,22 +6,14 @@
   </head>
   <body>
     <div id="hello-vue">
-      <!-- does not allow multiple statements here -->
-      <h1>{{ header; header.toUpperCase() }}</h1>
-      <!-- does not allow variable allocation here -->
-      <h1>{{ const variable = header}}</h1>
-      <!-- does not allow if else statements or functions here -->
-      <h1>{{ if(header) { return header }}}</h1>
-      <!-- however can use ternary operator for small if else -->
-      <h1>{{ header ? header: 'welcome' }}</h1>
-      <input type="text" v-model="header" />
+      <h1>{{ header.toUpperCase() }}</h1>
     </div>
     <script src="https://unpkg.com/vue"></script>
     <script>
       const helloVue = new Vue({
         el: '#hello-vue',
         data: {
-          header: null
+          header: 'Shopping list app'
         }
       });
     </script>
