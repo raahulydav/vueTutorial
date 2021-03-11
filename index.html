@@ -7,7 +7,11 @@
   <body>
     <div id="shopping-list">
       <h1>{{ header.toUpperCase() }}</h1>
-      <input v-model="newItem" type="text" placeholder="add new item" />
+      <div class="add-item">
+        <!-- v-on can be replaced by @ -->
+        <input v-model="newItem" type="text" v-on:keyup.enter="items.push(newItem)" placeholder="add new item" />
+        <button @click="items.push(newItem)">Add Item</button>
+      </div>
       <ul>
         <li v-for="item in items">{{ item }}</li>
       </ul>
