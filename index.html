@@ -13,7 +13,7 @@
       </div>
       <div v-if="state === 'edit'" class="add-item-form">
         <input v-model="newItem" type="text" @keyup.enter="saveItem" placeholder="add new item" />
-        <button @click="saveItem">Add Item</button>
+        <button v-bind:disabled="newItem.length === 0" @click="saveItem">Add Item</button>
       </div>
       <ul>
         <li v-for="item in items">{{ item }}</li>
