@@ -9,8 +9,8 @@
       <h1>{{ header.toUpperCase() }}</h1>
       <div class="add-item">
         <!-- v-on can be replaced by @ -->
-        <input v-model="newItem" type="text" v-on:keyup.enter="items.push(newItem)" placeholder="add new item" />
-        <button @click="items.push(newItem)">Add Item</button>
+        <input v-model="newItem" type="text" @keyup.enter="saveItem" placeholder="add new item" />
+        <button @click="saveItem">Add Item</button>
       </div>
       <ul>
         <li v-for="item in items">{{ item }}</li>
@@ -24,6 +24,11 @@
           header: 'Shopping list app',
           newItem: '',
           items: ['20 cups', '10 hats', '20 plates', '5 ballons']
+        },
+        methods: {
+          saveItem: function () {
+            this.items.push(this.newItem);
+          }
         }
       });
     </script>
