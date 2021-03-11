@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="main.css" />
     <title>Shopping List App</title>
   </head>
   <body>
@@ -13,10 +14,10 @@
       </div>
       <div v-if="state === 'edit'" class="add-item-form">
         <input v-model="newItem" type="text" @keyup.enter="saveItem" placeholder="add new item" />
-        <button v-bind:disabled="newItem.length === 0" @click="saveItem">Add Item</button>
+        <button @click="saveItem">Add Item</button>
       </div>
       <ul>
-        <li v-for="item in items">{{ item }}</li>
+        <li v-for="item in items" :class="{strikeout: item.purchased}" @click="newPurchase(item)">{{ item.label }}</li>
       </ul>
       <p v-if="items.length === 0">done with all items!</p>
     </div>
@@ -28,13 +29,38 @@
           state: 'default',
           header: 'Shopping list app',
           newItem: '',
-          items: []
-          // items: ['20 cups', '10 hats', '20 plates', '5 ballons']
+          items: [
+            {
+              label: '20 cups',
+              purchased: false
+            },
+            {
+              label: '10 hats',
+              purchased: false
+            },
+            {
+              label: '20 plates',
+              purchased: false
+            },
+            {
+              label: '5 ballons',
+              purchased: true
+            }
+          ]
         },
         methods: {
           saveItem: function () {
-            this.items.push(this.newItem);
+            if (this.newItem.length > 0) {
+              const newItemObject = {
+                label: this.newItem,
+                purchased: false
+              };
+              this.items.push(newItemObject);
+            }
             this.newItem = '';
+          },
+          newPurchase: function (item) {
+            item.purchased = !item.purchased;
           },
           changeState: function (newState) {
             this.state = newState;
